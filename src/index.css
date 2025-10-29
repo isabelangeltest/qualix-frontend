@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   🌞 BASE GLOBAL + 🌙 MODO OSCURO
+   ========================================================= */
+@layer base {
+
+  html,
+  body,
+  #root {
+    @apply bg-bg text-text font-inter transition-colors duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    @apply font-playfair;
+  }
+
+  /* 🌙 Tema oscuro (se activa con .dark en <html>) */
+  .dark html,
+  .dark body,
+  .dark #root {
+    @apply bg-dark_bg text-dark_text;
+  }
+}
+
+/* =========================================================
+   🎨 UTILIDADES SEMÁNTICAS Y COMPONENTES
+   ========================================================= */
+@layer components {
+
+  /* === BOTONES === */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white font-semibold hover:brightness-110 transition;
+  }
+
+  .dark .btn-primary {
+    @apply bg-dark_primary text-dark_bg hover:brightness-125;
+  }
+
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-transparent text-text border border-border hover:bg-bgSoft transition;
+  }
+
+  .dark .btn-ghost {
+    @apply text-dark_text border-dark_border hover:bg-dark_bgSoft;
+  }
+
+  /* === CARDS === */
+  .card {
+    @apply p-6 rounded-lg border border-border dark:border-dark_border bg-bgSoft dark:bg-dark_bgSoft shadow-soft;
+  }
+
+  .card {
+    @apply rounded-2xl bg-bgSoft border border-border shadow transition-all duration-300;
+  }
+
+  .dark .card {
+    @apply bg-dark_bgSoft border-dark_border;
+  }
+
+  .card:hover {
+    box-shadow: 0 6px 16px rgba(132, 204, 22, 0.2);
+  }
+
+  /* === CHIPS Y LINKS === */
+  .chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded-lg bg-primary/15 text-primary;
+  }
+
+  .dark .chip {
+    @apply bg-dark_primary/15 text-dark_primary;
+  }
+
+  .link {
+    @apply text-primary hover:underline;
+  }
+
+  .dark .link {
+    @apply text-dark_primary;
+  }
+
+  /* === DIVISORES === */
+  .divider {
+    @apply border-t border-border;
+  }
+
+  .dark .divider {
+    @apply border-dark_border;
+  }
+
+  /* === TABLAS (consistencia visual) === */
+  table {
+    @apply w-full border-collapse;
+  }
+
+  th,
+  td {
+    @apply border border-border p-2 text-left;
+  }
+
+  th {
+    @apply font-semibold text-text;
+  }
+
+  td {
+    @apply text-textDim;
+  }
+
+  .dark th,
+  .dark td {
+    @apply border-dark_border text-dark_textDim;
+  }
+}
+
+/* =========================================================
+   🌈 ANIMACIONES Y EFECTOS
+   ========================================================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Transición de tema con un suave resplandor */
+@keyframes themeSwitch {
+  0% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.15);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.theme-transition {
+  animation: themeSwitch 0.4s ease-in-out;
+}
+
+/* =========================================================
+   🧩 SLIDERS PERSONALIZADOS
+   ========================================================= */
+input[type="range"]::-webkit-slider-thumb {
+  background: var(--slider-thumb, #84CC16);
+}
+
+input[type="range"] {
+  accent-color: var(--slider-accent, #84CC16);
+}
+
+.dark input[type="range"] {
+  --slider-thumb: #38BDF8;
+  --slider-accent: #38BDF8;
+}
