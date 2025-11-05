@@ -159,15 +159,93 @@
 /* =========================================================
    🧩 SLIDERS PERSONALIZADOS
    ========================================================= */
-input[type="range"]::-webkit-slider-thumb {
-  background: var(--slider-thumb, #84CC16);
-}
 
 input[type="range"] {
-  accent-color: var(--slider-accent, #84CC16);
+  accent-color: var(--slider-accent, #38BDF8);
 }
 
 .dark input[type="range"] {
   --slider-thumb: #38BDF8;
   --slider-accent: #38BDF8;
+}
+
+/* 🎨 Valor por defecto */
+:root {
+  --slider-thumb: #38BDF8;
+}
+
+/* ======= BASE ======= */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: #ddd;
+  outline: none;
+}
+
+/* ======= CHROME, OPERA, EDGE (Blink/WebKit) ======= */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--slider-thumb, #38BDF8);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  margin-top: -5px;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* ======= FIREFOX ======= */
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%;
+  background: var(--slider-thumb, #38BDF8);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* ======= EDGE (Trident/Legacy) ======= */
+input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--slider-thumb, #38BDF8);
+  cursor: pointer;
+}
+
+/* ======= SAFARI (WebKit) ======= */
+@supports (-webkit-appearance: none) and (stroke-color: transparent) {
+  input[type="range"]::-webkit-slider-thumb {
+    background: var(--slider-thumb, #38BDF8);
+  }
+}
+
+/* ======= TRACK COLORS ======= */
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #ccc;
+  height: 4px;
+  border-radius: 4px;
+}
+input[type="range"]::-moz-range-track {
+  background: #ccc;
+  height: 4px;
+  border-radius: 4px;
+}
+input[type="range"]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+  height: 4px;
 }

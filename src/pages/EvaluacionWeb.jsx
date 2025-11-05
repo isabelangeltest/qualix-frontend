@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import jsPDF from "jspdf";
@@ -63,7 +63,7 @@ export default function EvaluacionWeb() {
         return;
       }
 
-      setMetrics(data.metrics);
+      setMetrics(data);
       toast.success("✅ Análisis completado correctamente.");
     } catch {
       toast.error("🚫 Error al conectar con el servidor local.");
@@ -142,7 +142,7 @@ export default function EvaluacionWeb() {
   };
 
   return (
-    <div className="p-8 max-w-6xl mx-auto bg-bg dark:bg-dark_bg text-text dark:text-dark_text transition-colors duration-300">
+    <div className="w-full p-[45px] bg-bg dark:bg-dark_bg text-text dark:text-dark_text transition-colors duration-300">
       {/* INTRODUCCIÓN */}
       <section className="mb-10 bg-bgSoft dark:bg-dark_bgSoft border-l-4 border-primary dark:border-dark_primary p-6 rounded-lg shadow-soft">
         <h1 className="text-3xl font-playfair font-bold text-primary dark:text-dark_primary mb-4">
@@ -188,9 +188,9 @@ export default function EvaluacionWeb() {
 
         {metrics && (
           <div className="mt-6 space-y-2">
-            <p><strong>Rendimiento:</strong> {metrics.performance.toFixed(1)} / 5</p>
-            <p><strong>Accesibilidad:</strong> {metrics.accessibility.toFixed(1)} / 5</p>
-            <p><strong>Buenas prácticas:</strong> {metrics.bestPractices.toFixed(1)} / 5</p>
+            <p><strong>Rendimiento:</strong> {metrics.performance.toFixed(1)}</p>
+            <p><strong>Accesibilidad:</strong> {metrics.accessibility.toFixed(1)}</p>
+            <p><strong>Buenas prácticas:</strong> {metrics.bestPractices.toFixed(1)}</p>
             <p><strong>SEO:</strong> {metrics.seo.toFixed(1)} / 5</p>
             <p className="font-semibold text-lg text-primary dark:text-dark_primary mt-4">
               Promedio automático: {promedioAutomatico} / 5
