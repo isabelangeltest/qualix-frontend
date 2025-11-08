@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Importación de páginas
 import Inicio from "./pages/Inicio";
 import Normas from "./pages/Normas";
 import Modelos from "./pages/Modelos";
@@ -10,18 +10,38 @@ import Pruebas from "./pages/Pruebas";
 import EvaluacionWeb from "./pages/EvaluacionWeb";
 import Conclusiones from "./pages/Conclusiones";
 
-// Componentes globales
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
-  return (
-    <div className="bg-bg text-text font-inter min-h-screen flex flex-col">
-      <Router>
-        {/* Barra de navegación */}
-        <Navbar />
+  // 🔹 1. Estado para modo oscuro/claro
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
-        {/* Contenido principal */}
+  // 🔹 2. Función para alternar el tema
+  const toggleTheme = () => {
+    setDarkMode((prev) => !prev);
+  };
+
+  // 🔹 3. Efecto para aplicar la clase "dark" al HTML
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  return (
+    <div className="bg-bg text-text font-inter min-h-screen flex flex-col transition-colors duration-300">
+      <Router>
+        {/* 🔹 Barra de navegación */}
+        <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
+
+        {/* 🔹 Contenido principal */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Inicio />} />
@@ -30,12 +50,12 @@ function App() {
             <Route path="/estandares" element={<Estandares />} />
             <Route path="/codigo" element={<Codigo />} />
             <Route path="/pruebas" element={<Pruebas />} />
-            <Route path="/evaluacionWeb" element={<EvaluacionWeb />} />
+            <Route path="/evaluacionweb" element={<EvaluacionWeb />} />
             <Route path="/conclusiones" element={<Conclusiones />} />
           </Routes>
         </main>
 
-        {/* Pie de página */}
+        {/* 🔹 Pie de página */}
         <Footer />
       </Router>
     </div>

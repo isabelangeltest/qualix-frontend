@@ -58,9 +58,8 @@ export default function Inicio() {
     return (
         <main className="bg-bg dark:bg-dark_bg text-text dark:text-dark_text min-h-screen">
             {/* === HERO === */}
-            <section className="relative bg-gradient-to-b from-bgSoft dark:from-dark_bgSoft to-bg dark:to-dark_bg py-24 text-center overflow-hidden transition-colors duration-300">
+            <section className="relative bg-gradient-to-b from-bgSoft dark:from-dark_bgSoft to-bg dark:to-dark_bg py-10 text-center overflow-hidden transition-colors duration-300">
                 <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-
                 <div className="relative z-10 max-w-3xl mx-auto px-6 animate-fadeIn">
                     <div className="flex flex-col items-center justify-center mb-6">
                         <div className="h-16 w-16 rounded-full bg-primary dark:bg-dark_primary flex items-center justify-center text-bg dark:text-dark_bg text-2xl font-bold shadow-lg">
@@ -88,7 +87,7 @@ export default function Inicio() {
             </section>
 
             {/* === MÓDULOS === */}
-            <section className="max-w-6xl mx-auto px-6 py-20">
+            <section className="max-w-6xl mx-auto px-6">
                 <h2 className="text-3xl font-playfair mb-10 text-center text-primary dark:text-dark_primary">
                     Explora los módulos de aprendizaje
                 </h2>
