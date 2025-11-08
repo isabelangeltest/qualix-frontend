@@ -17,12 +17,30 @@ export default function EvaluacionWeb() {
   const [contenido, setContenido] = useState(3);
   const [diseno, setDiseno] = useState(3);
   const [observaciones, setObservaciones] = useState("");
+  const [observacionesMetricas, setObservacionesMetricas] = useState({
+    usabilidad: "",
+    interactividad: "",
+    contenido: "",
+    diseno: "",
+  });
+
+
+  // 🔹 Nueva función: normalizar 0–100 a 1–5
+  const normalizar = (valor) => (valor ? (valor / 20).toFixed(1) : 0);
 
   // --- Cálculos ---
   const promedioPedagogico = ((usabilidad + interactividad + contenido + diseno) / 4).toFixed(1);
+
   const promedioAutomatico = metrics
-    ? ((metrics.performance + metrics.accessibility + metrics.bestPractices + metrics.seo) / 4).toFixed(1)
+    ? (
+      (normalizar(metrics.performance) * 1 +
+        normalizar(metrics.accessibility) * 1 +
+        normalizar(metrics.bestPractices) * 1 +
+        normalizar(metrics.seo) * 1) /
+      4
+    ).toFixed(1)
     : 0;
+
   const calificacionGlobal = (promedioAutomatico * 0.6 + promedioPedagogico * 0.4).toFixed(1);
 
   // --- Local storage ---
@@ -46,10 +64,7 @@ export default function EvaluacionWeb() {
     setMetrics(null);
 
     try {
-      // Determinar la URL base de la API según el entorno
-      const API_BASE =
-        import.meta.env.VITE_API_BASE || "http://localhost:8080";
-
+      const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8080";
       const response = await fetch(`${API_BASE}/api/auditar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -86,11 +101,21 @@ export default function EvaluacionWeb() {
       automatico: promedioAutomatico,
       pedagogico: promedioPedagogico,
       global: calificacionGlobal,
-      observaciones,
+      observaciones, // observaciones generales
+      observacionesMetricas, // 👈 nuevo: observaciones por cada métrica
     };
 
     setEvaluaciones((prev) => [...prev, nueva]);
+
+    // Limpieza de campos después de guardar
     setObservaciones("");
+    setObservacionesMetricas({
+      usabilidad: "",
+      interactividad: "",
+      contenido: "",
+      diseno: "",
+    });
+
     toast.success("💾 Evaluación guardada correctamente.");
   };
 
@@ -105,9 +130,10 @@ export default function EvaluacionWeb() {
     doc.setFontSize(14);
     doc.text("Informe de Evaluaciones de Calidad de Software", 14, 15);
 
+    // 📋 Tabla principal (resumen general)
     autoTable(doc, {
       startY: 25,
-      head: [["Fecha", "URL", "Automático", "Manual", "Global", "Observaciones"]],
+      head: [["Fecha", "URL", "Automático (1–5)", "Manual (1–5)", "Global (1–5)", "Observaciones generales"]],
       body: evaluaciones.map((e) => [
         e.fecha,
         e.url,
@@ -121,9 +147,39 @@ export default function EvaluacionWeb() {
       headStyles: { fillColor: [37, 99, 235], textColor: 255 },
     });
 
+    // 🧩 Observaciones detalladas por métrica (una tabla debajo por evaluación)
+    evaluaciones.forEach((e) => {
+      if (e.observacionesMetricas) {
+        const startY = doc.lastAutoTable.finalY + 8;
+
+        doc.setFontSize(12);
+        doc.setTextColor(37, 99, 235);
+        doc.text("Observaciones por Métrica", 14, startY - 2);
+        doc.setTextColor(0, 0, 0);
+
+        autoTable(doc, {
+          startY,
+          head: [["Usabilidad", "Interactividad", "Contenido", "Diseño"]],
+          body: [
+            [
+              e.observacionesMetricas.usabilidad || "—",
+              e.observacionesMetricas.interactividad || "—",
+              e.observacionesMetricas.contenido || "—",
+              e.observacionesMetricas.diseno || "—",
+            ],
+          ],
+          theme: "grid",
+          styles: { fontSize: 9 },
+          headStyles: { fillColor: [59, 130, 246], textColor: 255 },
+        });
+      }
+    });
+
+    // 💾 Guardar el PDF
     doc.save("Informe_Evaluaciones.pdf");
     toast.success("📄 Informe PDF generado correctamente.");
   };
+
 
   // --- Eliminar y limpiar ---
   const eliminarEvaluacion = (id) => {
@@ -181,17 +237,21 @@ export default function EvaluacionWeb() {
         <button
           onClick={analizarSitio}
           disabled={loading}
-          className="btn-primary px-4 py-2 rounded-lg shadow-soft"
+          className={`btn-primary px-4 py-2 rounded-lg shadow-soft flex items-center justify-center gap-2 ${loading ? "opacity-90 cursor-not-allowed" : ""
+            }`}
         >
+          {loading && <span className="qx-spinner"></span>}
           {loading ? "Analizando..." : "Analizar automáticamente"}
         </button>
 
+
+
         {metrics && (
           <div className="mt-6 space-y-2">
-            <p><strong>Rendimiento:</strong> {metrics.performance.toFixed(1)}</p>
-            <p><strong>Accesibilidad:</strong> {metrics.accessibility.toFixed(1)}</p>
-            <p><strong>Buenas prácticas:</strong> {metrics.bestPractices.toFixed(1)}</p>
-            <p><strong>SEO:</strong> {metrics.seo.toFixed(1)} / 5</p>
+            <p><strong>Rendimiento:</strong> {normalizar(metrics.performance)} / 5 ({metrics.performance}%)</p>
+            <p><strong>Accesibilidad:</strong> {normalizar(metrics.accessibility)} / 5 ({metrics.accessibility}%)</p>
+            <p><strong>Buenas prácticas:</strong> {normalizar(metrics.bestPractices)} / 5 ({metrics.bestPractices}%)</p>
+            <p><strong>SEO:</strong> {normalizar(metrics.seo)} / 5 ({metrics.seo}%)</p>
             <p className="font-semibold text-lg text-primary dark:text-dark_primary mt-4">
               Promedio automático: {promedioAutomatico} / 5
             </p>
@@ -211,12 +271,12 @@ export default function EvaluacionWeb() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
-            ["Usabilidad", usabilidad, setUsabilidad],
-            ["Interactividad", interactividad, setInteractividad],
-            ["Contenido", contenido, setContenido],
-            ["Diseño", diseno, setDiseno],
-          ].map(([label, value, setter]) => (
-            <div key={label}>
+            ["Usabilidad", usabilidad, setUsabilidad, "usabilidad"],
+            ["Interactividad", interactividad, setInteractividad, "interactividad"],
+            ["Contenido", contenido, setContenido, "contenido"],
+            ["Diseño", diseno, setDiseno, "diseno"],
+          ].map(([label, value, setter, key]) => (
+            <div key={label} className="space-y-2">
               <label className="font-medium">{label}</label>
               <div className="flex items-center gap-3">
                 <input
@@ -242,15 +302,30 @@ export default function EvaluacionWeb() {
                   className="w-20 border border-border dark:border-dark_border rounded px-2 py-1 bg-bg dark:bg-dark_bg text-center"
                 />
               </div>
-              <p className="text-sm text-textDim dark:text-dark_textDim mt-1">Valor: {value}</p>
+              <p className="text-sm text-textDim dark:text-dark_textDim">Valor: {value}</p>
+
+              {/* 📝 Observaciones individuales por métrica */}
+              <textarea
+                placeholder={`Observaciones sobre ${label.toLowerCase()}... (opcional)`}
+                value={observacionesMetricas[key]}
+                onChange={(e) =>
+                  setObservacionesMetricas({
+                    ...observacionesMetricas,
+                    [key]: e.target.value,
+                  })
+                }
+                className="w-full border border-border dark:border-dark_border rounded p-2 bg-bg dark:bg-dark_bg text-sm text-text dark:text-dark_text"
+                rows="2"
+              />
             </div>
           ))}
         </div>
 
+        {/* Observaciones generales (ya existente) */}
         <textarea
           value={observaciones}
           onChange={(e) => setObservaciones(e.target.value)}
-          placeholder="Observaciones o comentarios..."
+          placeholder="Observaciones o comentarios generales..."
           className="w-full border border-border dark:border-dark_border rounded mt-4 p-2 bg-bg dark:bg-dark_bg text-text dark:text-dark_text text-sm"
           rows="3"
         ></textarea>
@@ -259,6 +334,7 @@ export default function EvaluacionWeb() {
           Promedio manual: {promedioPedagogico} / 5
         </p>
       </div>
+
 
       {/* CALIFICACIÓN GLOBAL */}
       <div className="bg-primary/10 dark:bg-dark_primary/10 border border-primary/30 dark:border-dark_primary/30 p-6 rounded-lg shadow-soft mb-8">

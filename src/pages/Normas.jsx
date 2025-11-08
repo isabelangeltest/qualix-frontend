@@ -26,7 +26,7 @@ export default function Normas() {
                     {
                         id: 1,
                         title: "🏢 ISO 9001 — Gestión de la Calidad",
-                        link: "https://www.iso.org/iso-9001-quality-management.html",
+                        link: "https://www.iso.org/standard/62085.html",
                         content: (
                             <>
                                 <p>
@@ -163,34 +163,37 @@ export default function Normas() {
                     },
                     {
                         id: 4,
-                        title: "📊 ISO/IEC 15504 — SPICE (Evaluación de Procesos)",
-                        link: "https://www.iso.org/standard/21633.html",
+                        title: "📊 ISO/IEC 33000 — Evaluación de Procesos (SPICE 2.0)",
+                        link: "https://www.iso.org/standard/54157.html",
                         content: (
                             <>
                                 <p>
-                                    El modelo <strong>SPICE</strong> evalúa la madurez y capacidad
-                                    de los procesos de software, sirviendo como base para
-                                    auditorías y certificaciones.
+                                    La serie <strong>ISO/IEC 33000</strong> reemplaza a la antigua ISO/IEC 15504 (SPICE),
+                                    estableciendo un marco más moderno y coherente para evaluar la madurez y capacidad
+                                    de los procesos de desarrollo y mantenimiento de software.
                                 </p>
 
                                 <p className="font-medium text-text dark:text-dark_text mt-3">
                                     💡 Ejemplo:
                                 </p>
                                 <p>
-                                    Una auditoría basada en ISO/IEC 15504 permite medir la
-                                    capacidad de los procesos y definir planes de mejora.
+                                    Una evaluación basada en <strong>ISO/IEC 33000</strong> permite determinar el nivel
+                                    de madurez organizacional y definir planes de mejora medibles en función de la
+                                    capacidad de los procesos.
                                 </p>
 
                                 <p className="font-medium text-text dark:text-dark_text mt-3">
                                     ✅ Ventajas:
                                 </p>
                                 <ul className="list-disc pl-6">
-                                    <li>Permite diagnóstico y mejora continua.</li>
-                                    <li>Usado en certificaciones internacionales.</li>
+                                    <li>Sustituye oficialmente a la ISO/IEC 15504 (SPICE).</li>
+                                    <li>Compatible con ISO/IEC 12207 e ISO/IEC 25010.</li>
+                                    <li>Promueve la mejora continua y la certificación de madurez organizacional.</li>
                                 </ul>
                             </>
                         ),
                     },
+
                     {
                         id: 5,
                         title: "🧩 IEEE 730 — Norma de Aseguramiento de Calidad",
@@ -249,83 +252,64 @@ export default function Normas() {
                 ))}
 
                 {/* === TABLA COMPARATIVA === */}
-                <div className="mt-10 bg-bgSoft dark:bg-dark_bgSoft p-6 rounded-lg shadow-soft border border-border dark:border-dark_border">
-                    <h2 className="text-2xl font-playfair font-semibold text-primary dark:text-dark_primary mb-4 text-center">
+                <div className="card p-6 rounded-lg border border-border dark:border-dark_border bg-bgSoft dark:bg-dark_bgSoft shadow-soft mt-8">
+                    <h2 className="text-2xl font-playfair font-semibold text-primary dark:text-dark_primary mb-4 flex items-center justify-center gap-2 text-center">
                         📊 Comparativa entre Normas de Calidad
                     </h2>
-                    <div className="overflow-x-auto">
-                        <table className="w-full border-collapse text-sm text-left text-textDim dark:text-dark_textDim">
-                            <thead>
-                                <tr className="bg-primary/20 dark:bg-dark_primary/20 text-primary dark:text-dark_primary">
-                                    <th className="border border-border dark:border-dark_border p-2">
-                                        Norma
-                                    </th>
-                                    <th className="border border-border dark:border-dark_border p-2">
-                                        Propósito
-                                    </th>
-                                    <th className="border border-border dark:border-dark_border p-2">
-                                        Aplicación
-                                    </th>
-                                    <th className="border border-border dark:border-dark_border p-2">
-                                        Tipo
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        ISO 9001
-                                    </td>
-                                    <td className="border p-2">
-                                        Sistema de gestión de calidad.
-                                    </td>
-                                    <td className="border p-2">Organizacional</td>
-                                    <td className="border p-2">General</td>
-                                </tr>
-                                <tr className="bg-bg dark:bg-dark_bg">
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        ISO/IEC 25000
-                                    </td>
-                                    <td className="border p-2">
-                                        Evaluación de la calidad del software.
-                                    </td>
-                                    <td className="border p-2">Producto</td>
-                                    <td className="border p-2">Técnica</td>
-                                </tr>
-                                <tr>
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        ISO/IEC 12207
-                                    </td>
-                                    <td className="border p-2">
-                                        Procesos del ciclo de vida del software.
-                                    </td>
-                                    <td className="border p-2">Proceso</td>
-                                    <td className="border p-2">Gestión</td>
-                                </tr>
-                                <tr className="bg-bg dark:bg-dark_bg">
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        ISO/IEC 15504
-                                    </td>
-                                    <td className="border p-2">
-                                        Evaluación y mejora de procesos.
-                                    </td>
-                                    <td className="border p-2">Proceso</td>
-                                    <td className="border p-2">Auditoría</td>
-                                </tr>
-                                <tr>
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        IEEE 730
-                                    </td>
-                                    <td className="border p-2">
-                                        Aseguramiento de la calidad del software.
-                                    </td>
-                                    <td className="border p-2">Proyecto</td>
-                                    <td className="border p-2">Operativa</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+
+                    <table className="w-full text-sm border border-border dark:border-dark_border rounded-lg overflow-hidden">
+                        <thead>
+                            <tr className="bg-primary/20 dark:bg-dark_primary/20 text-primary dark:text-dark_primary">
+                                <th className="px-4 py-2 text-left">Norma</th>
+                                <th className="px-4 py-2 text-left">Propósito</th>
+                                <th className="px-4 py-2 text-left">Aplicación</th>
+                                <th className="px-4 py-2 text-left">Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">ISO 9001</td>
+                                <td className="px-4 py-2">Sistema de gestión de calidad.</td>
+                                <td className="px-4 py-2">Organizacional</td>
+                                <td className="px-4 py-2">General</td>
+                            </tr>
+
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">ISO/IEC 25000</td>
+                                <td className="px-4 py-2">Evaluación de la calidad del software.</td>
+                                <td className="px-4 py-2">Producto</td>
+                                <td className="px-4 py-2">Técnica</td>
+                            </tr>
+
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">ISO/IEC 12207</td>
+                                <td className="px-4 py-2">Procesos del ciclo de vida del software.</td>
+                                <td className="px-4 py-2">Proceso</td>
+                                <td className="px-4 py-2">Gestión</td>
+                            </tr>
+
+                            {/* 🔄 Actualización: reemplazo de ISO/IEC 15504 por ISO/IEC 33000 */}
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">ISO/IEC 33000</td>
+                                <td className="px-4 py-2">
+                                    Evaluación y mejora de procesos de software (SPICE 2.0). Sustituye a la ISO/IEC 15504,
+                                    con un enfoque moderno de madurez organizacional y mejora continua.
+                                </td>
+                                <td className="px-4 py-2">Proceso</td>
+                                <td className="px-4 py-2">Auditoría</td>
+                            </tr>
+
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">IEEE 730</td>
+                                <td className="px-4 py-2">Aseguramiento de la calidad del software.</td>
+                                <td className="px-4 py-2">Proyecto</td>
+                                <td className="px-4 py-2">Operativa</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
 
                 {/* === BOTÓN DE RETORNO === */}
                 <div className="mt-8 flex justify-end">

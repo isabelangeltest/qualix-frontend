@@ -153,37 +153,40 @@ export default function Modelos() {
                     },
                     {
                         id: 4,
-                        title: "🔧 SPICE / ISO 15504 — Evaluación y Mejora de Procesos",
-                        link: "https://www.iso.org/standard/21633.html",
+                        title: "🔧 ISO/IEC 33000 — Evaluación y Mejora de Procesos (SPICE 2.0)",
+                        link: "https://www.iso.org/standard/54157.html",
                         content: (
                             <>
                                 <p>
-                                    El modelo <strong>SPICE</strong> mide la{" "}
-                                    <strong>madurez y capacidad de los procesos</strong> de
-                                    desarrollo y mantenimiento, utilizando escalas de desempeño
-                                    desde “no realizado” hasta “optimizado”.
+                                    El modelo <strong>ISO/IEC 33000</strong>, conocido como <strong>SPICE 2.0</strong>,
+                                    sustituye a la antigua ISO/IEC 15504 y establece un marco más moderno para medir la{" "}
+                                    <strong>madurez y capacidad de los procesos</strong> de desarrollo, mantenimiento
+                                    y gestión de software.
                                 </p>
 
                                 <p className="font-medium mt-3">🔹 Propósito:</p>
                                 <p>
-                                    Determinar el grado de cumplimiento de los objetivos del
-                                    proceso y fomentar la mejora continua mediante auditorías.
+                                    Evaluar la capacidad de los procesos y promover la{" "}
+                                    <strong>mejora continua</strong> mediante auditorías estructuradas y planes de
+                                    optimización organizacional.
                                 </p>
 
                                 <p className="font-medium mt-3">✅ Ventajas:</p>
                                 <ul className="list-disc pl-6">
-                                    <li>Evaluación cuantitativa y comparativa.</li>
-                                    <li>Compatible con CMMI y normas ISO.</li>
+                                    <li>Actualiza y amplía el alcance del modelo SPICE original (ISO/IEC 15504).</li>
+                                    <li>Mayor compatibilidad con ISO/IEC 12207 e ISO/IEC 25010.</li>
+                                    <li>Permite certificación y comparación de niveles de madurez.</li>
                                 </ul>
 
                                 <p className="font-medium mt-3">⚠️ Limitaciones:</p>
                                 <ul className="list-disc pl-6">
-                                    <li>Requiere formación técnica especializada.</li>
-                                    <li>Complejidad en auditorías iniciales.</li>
+                                    <li>Implementación compleja en organizaciones sin procesos formales.</li>
+                                    <li>Requiere auditorías periódicas para mantener la validez de los resultados.</li>
                                 </ul>
                             </>
                         ),
                     },
+
                 ].map(({ id, title, link, content }) => (
                     <div key={id} className="card mb-4 overflow-hidden">
                         <button
@@ -211,71 +214,74 @@ export default function Modelos() {
                 ))}
 
                 {/* === TABLA COMPARATIVA === */}
-                <div className="mt-10 bg-bgSoft dark:bg-dark_bgSoft p-6 rounded-lg shadow-soft border border-border dark:border-dark_border">
-                    <h2 className="text-2xl font-playfair font-semibold text-primary dark:text-dark_primary mb-4 text-center">
+                <div className="card p-6 rounded-lg border border-border dark:border-dark_border bg-bgSoft dark:bg-dark_bgSoft shadow-soft mt-8">
+                    <h2 className="text-2xl font-playfair font-semibold text-primary dark:text-dark_primary mb-4 flex items-center justify-center gap-2 text-center">
                         📊 Comparativa entre los Modelos de Calidad
                     </h2>
 
-                    <div className="overflow-x-auto">
-                        <table className="w-full border-collapse text-sm text-left text-textDim dark:text-dark_textDim">
-                            <thead>
-                                <tr className="bg-primary/20 dark:bg-dark_primary/20 text-primary dark:text-dark_primary">
-                                    <th className="border p-2">Modelo</th>
-                                    <th className="border p-2">Propósito</th>
-                                    <th className="border p-2">Tipo</th>
-                                    <th className="border p-2">Nivel de aplicación</th>
-                                    <th className="border p-2">Orientación</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        ISO/IEC 25010
-                                    </td>
-                                    <td className="border p-2">
-                                        Evaluar la calidad del producto software.
-                                    </td>
-                                    <td className="border p-2">Producto</td>
-                                    <td className="border p-2">Proyecto</td>
-                                    <td className="border p-2">Evaluación técnica</td>
-                                </tr>
-                                <tr className="bg-bg dark:bg-dark_bg">
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        ISO/IEC 12207
-                                    </td>
-                                    <td className="border p-2">
-                                        Estandarizar procesos del ciclo de vida del software.
-                                    </td>
-                                    <td className="border p-2">Proceso</td>
-                                    <td className="border p-2">Organizacional</td>
-                                    <td className="border p-2">Gestión de procesos</td>
-                                </tr>
-                                <tr>
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        CMMI
-                                    </td>
-                                    <td className="border p-2">
-                                        Medir la madurez y capacidad organizacional.
-                                    </td>
-                                    <td className="border p-2">Madurez</td>
-                                    <td className="border p-2">Organizacional</td>
-                                    <td className="border p-2">Mejora continua</td>
-                                </tr>
-                                <tr className="bg-bg dark:bg-dark_bg">
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        SPICE / ISO 15504
-                                    </td>
-                                    <td className="border p-2">
-                                        Evaluar y mejorar la capacidad de los procesos.
-                                    </td>
-                                    <td className="border p-2">Madurez</td>
-                                    <td className="border p-2">Organizacional</td>
-                                    <td className="border p-2">Auditorías y métricas</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
+                    <table className="w-full text-sm border border-border dark:border-dark_border rounded-lg overflow-hidden">
+                        <thead>
+                            <tr className="bg-primary/20 dark:bg-dark_primary/20 text-primary dark:text-dark_primary">
+                                <th className="px-4 py-2 text-left">Modelo</th>
+                                <th className="px-4 py-2 text-left">Propósito</th>
+                                <th className="px-4 py-2 text-left">Tipo</th>
+                                <th className="px-4 py-2 text-left">Nivel de aplicación</th>
+                                <th className="px-4 py-2 text-left">Orientación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">
+                                    ISO/IEC 25010
+                                </td>
+                                <td className="px-4 py-2">Evaluar la calidad del producto software.</td>
+                                <td className="px-4 py-2">Producto</td>
+                                <td className="px-4 py-2">Proyecto</td>
+                                <td className="px-4 py-2">Evaluación técnica</td>
+                            </tr>
+
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">
+                                    ISO/IEC 12207
+                                </td>
+                                <td className="px-4 py-2">
+                                    Estandarizar los procesos del ciclo de vida del software.
+                                </td>
+                                <td className="px-4 py-2">Proceso</td>
+                                <td className="px-4 py-2">Organizacional</td>
+                                <td className="px-4 py-2">Gestión de procesos</td>
+                            </tr>
+
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">
+                                    CMMI
+                                </td>
+                                <td className="px-4 py-2">
+                                    Medir la madurez y capacidad organizacional.
+                                </td>
+                                <td className="px-4 py-2">Madurez</td>
+                                <td className="px-4 py-2">Organizacional</td>
+                                <td className="px-4 py-2">Mejora continua</td>
+                            </tr>
+
+                            {/* 🔄 Actualizado: reemplazo de SPICE / ISO 15504 */}
+                            <tr className="border-t border-border dark:border-dark_border hover:bg-primary/5 dark:hover:bg-dark_primary/10 transition">
+                                <td className="px-4 py-2 font-semibold text-primary dark:text-dark_primary">
+                                    ISO/IEC 33000
+                                </td>
+                                <td className="px-4 py-2">
+                                    Evaluar y mejorar la capacidad de los procesos de software
+                                    mediante auditorías y mediciones de madurez (SPICE 2.0).
+                                </td>
+                                <td className="px-4 py-2">Madurez</td>
+                                <td className="px-4 py-2">Organizacional</td>
+                                <td className="px-4 py-2">Auditorías y métricas</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
 
                 {/* === BOTÓN DE RETORNO === */}
                 <div className="mt-8 flex justify-end">

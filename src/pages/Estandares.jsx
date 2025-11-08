@@ -86,7 +86,7 @@ export default function Estandares() {
                             </>
                         ),
                     },
-                    {
+                    /* {
                         id: 3,
                         title: "⚙️ ISO/IEC 9126 — Calidad del Producto de Software",
                         link: "https://www.iso.org/standard/22749.html",
@@ -109,7 +109,7 @@ export default function Estandares() {
                                 </ul>
                             </>
                         ),
-                    },
+                    },   */
                     {
                         id: 4,
                         title: "📊 ISO/IEC 25010 — Modelo de Calidad Actualizado",
@@ -219,16 +219,6 @@ export default function Estandares() {
                                     </td>
                                     <td className="border p-2">Análisis</td>
                                     <td className="border p-2">Diseño y planificación</td>
-                                </tr>
-                                <tr>
-                                    <td className="border p-2 font-medium text-text dark:text-dark_text">
-                                        ISO/IEC 9126
-                                    </td>
-                                    <td className="border p-2">
-                                        Evaluar la calidad del producto software.
-                                    </td>
-                                    <td className="border p-2">Producto</td>
-                                    <td className="border p-2">Evaluación técnica</td>
                                 </tr>
                                 <tr className="bg-bg dark:bg-dark_bg">
                                     <td className="border p-2 font-medium text-text dark:text-dark_text">
